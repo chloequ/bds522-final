@@ -1,0 +1,88 @@
+---
+title: ""
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 4 Results
+
+### 4.1 t-test
+
+```{r message=FALSE}
+#The variances of two groups are substantially different, therefore the Welch (or Satterthwaite) approximation is used and the pooled estimator of variance is not used.
+t.test(dat1$value_sqft,dat0$value_sqft,alternative="greater",var.equal = FALSE)
+```
+
+The p-value for one-sided two sample t-test is much less than 0.01, suggesting that the mean of *value_sqft* for properties within a quarter miles from transit stations are significantly larger than those located more than a quarter miles away from transit stations. 
+
+### 4.2 Random Permutation Test
+```{r message=FALSE}
+library(perm)
+rules <- permControl(nmc=5000)
+permTS(dat1$value_sqft,dat0$value_sqft,alternative="greater",method="exact.mc",control=rules)
+```
+
+Though the result of 5000 random permutation test is less significant than the two-sample t-test, it is still significant at 0.01 level. This result is consistent with the two-sample t-test. Therefore, the evidence is strong enough to reject the null hypothesis in favor of the alternative hypothesis that mean *value_sqft* is greater for properties within a quarter mile from transit stations compared to those that are not.
+
+### 4.3 Multiple Regression
+As the main object for this project is to examine whether proximity to transit stations for a property increases people’s willingness to pay for it, first let us develop a simple regression model for *qrtmile*.
+
+```{r message=FALSE}
+reg00<-lm(log(value_sqft)~ factor(qrtmile),data=dat)
+summary(reg00)
+```
+
+Though the coefficient of *qrtmile* is significant, the r-squared is very low (0.004). This is not surprising since the *qrtmile* is a categorical variable, which fits poorly in simple linear regression. Furthermore, as described in the introduction section, the variation in *value_sqft* is expected to be associated with many other variables. Notice, however, the sign of the coefficient is positive, which suggest that, being within a quarter mile away from transit stations have positive effect on *value_sqft *, which conforms to previous conclusion.
+
+```{r message=FALSE}
+# result contradicts the observations
+reg0<-lm(value_sqft~ dist * factor(qrtmile),data=dat)
+summary(reg0)
+```
+
+Now it is time to add all other variables to the regression model. Since several other variables demonstrate interactions with *qrtmile* more or less in the preliminary analysis section, these interactions should be included in the regression model. This model could be stated as:
+
+***value_sqft*$=\beta_0+\beta_1*dist*qrtmile+\beta_2*medInc*qrtmile+\beta_3*vacRate*qrtmile+\beta_4*condition$**
+**$+\beta_5*dist+\beta_6*medInc+\beta_7*vacRate+\beta_8*condition$**
+
+```{r message=FALSE}
+# result contradicts the observations
+reg1<-lm(value_sqft~dist * factor(qrtmile) +  medInc * factor(qrtmile) + vacRate * factor(qrtmile) +  factor(condition),data=dat)
+summary(reg1)
+```
+Except for the coefficient of *dist:factor(qrtmile1)*, all other coefficients are significant. Recall that in the Preliminary Analysis section, the plot of *value_sqft* by *dist* for *qrtmile=1* suggests that there is no significant linear relationship between *dist* and *value_sqft* for this group. The non-significant coefficient agrees with this observation. The R-squared is 0.64, which means that 64% of the variation in *value_sqft* is explained by this model. 
+
+These (significant) coefficients could be interpreted as follows:
+
++***Intercept***: the interpretation is not meaningful here.
+
++***dist***: holding median household income and vacancy rate of the parent census tract as well as condition constant, an additional increase of distance from the nearest transit station is associated with a **decrease** of 8.142e-04 dollars in its market value per square footage, if the property is more than a quarter mile away from the nearest station.
+
++***factor(qrtmile)1***: If the median household income and vacancy rate of the parent census tract are zero, and the exterior condition of a property is not above average, the market value per square footage for this property would be 2.179e+01 dollars higher when it is located within a quarter mile from the nearest transit station than when it is not. (Again, this is not very meaningful)
+
++***medInc***: as median household income increases by 1 dollar, the main effect of it is that market value per square footage **increases** 2.696e-03 dollars, if holding all other terms constant. However, *medInc* also appears in interaction terms, so the effect of *medInc* can only be partially interpreted here.
+
++***vacRate***: as vacancy rate increases by 1 percentage, the main effect of it is that market value per square footage **decreases** 6.611e+01 dollars, if holding all other terms constant. However, * vacRate * also appears in interaction terms, so the effect of * vacRate* can only be partially interpreted here.
+
++***factor(condition)1***: on average, the market value per square footage for properties with above-average exterior condition is 8.761e+01 dollars higher than that for those that are not above average, if holding *medInc*,*dist*,*vacRate* constant.
+
++***factor(qrtmile)1: medInc***: the **positive** effect of being within a quarter mile away from the nearest transit station on market value per square footage is 6.267e-04 dollars higher as median household income increases by 1 dollar, holding *vacRate*,*dist*, and *condition* constant.
+
++***factor(qrtmile)1: vacRate***: the **negative** effect of being within a quarter mile away from the nearest transit station on market value per square footage is 1.449e+02 dollars higher as vacancy rate increases by 1 percentage, holding *medInc*,*dist*, and *condition* constant.
+
+Finally, it is necessary to check whether the assumptions of multiple regression still hold for this model.
+```{r message=FALSE, out.width ='100%', fig.asp=0.5}
+par(mfrow = c(1,2),cex=0.7)
+hist(reg1$residuals)
+qqPlot(reg1)
+summary(reg1$residuals)
+```
+The histogram of residuals and the Normal quantile plot show that distribution is skewed. However, given that the sample size is very large, this skewness is not strong enough to invalidate the analysis.
+
+```{r message=FALSE}
+par(col="grey")
+plot(reg1$fitted.values,reg1$residuals,xlab="predicted values",ylab="residuals",main="Residuals by Predicted Plot")
+```
+The residuals by predicted plot also suggests that the residuals are heteroscedastic (variances are not constant at different predicted values) This is not surprising given that there are many observations with extreme high market values per square footage, which cannot be fully explained by this model. Again, this heteroscedasticity is not strong enough to invalidate the analysis. 

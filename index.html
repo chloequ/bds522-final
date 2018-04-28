@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Ge (Chloe ) Qu" />
+
+
+<title>Are people willing to pay more for residential properties near transit stations?</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BDS 522 Final Project</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Introduction</a>
+</li>
+<li>
+  <a href="data.html">Data and Methods</a>
+</li>
+<li>
+  <a href="preliminary.html">Preliminary Analysis</a>
+</li>
+<li>
+  <a href="results.html">Results</a>
+</li>
+<li>
+  <a href="conclusion.html">Conclusion</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore"><strong>Are people willing to pay more for residential properties near transit stations?</strong></h1>
+<h4 class="author"><em>Ge (Chloe ) Qu</em></h4>
+<h4 class="date"><em>4/27/2018</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>1 Introduction</h1>
+<p>Transit-oriented Development (TOD) is a big concept in the field of urban planning and real estate development. TOD is a pattern of development which usually centers around a transit station, with high-density mixed-use properties located nearby and as it spreads out the density becomes lower. It is recognized as an effective way to to increase the ridership of public transit and reduce automobile dependency. It also maximizes the interactions between residentials, businesses, and leisure spaces, creating more walkable and livable urban spaces.</p>
+<p>Cities around the world have successfully followed this pattern to make themselves more compact and sustainable. In cities with dense population, such as Hong Kong and San Francisco, properties near major transit stations usually have the hottest market since the demand for these properties is much higher. As the fifth largest city in the US with limited land resources and existing city transit system, Philadelphia seems to be a suitable place for TOD. In fact, planning agencies of the City and the Region have been looking at opportunities for TOD in Philadelphia. A good question to ask first is that, does proximity to transit stations for a residential property have an influence on people’s willingness to pay for it?</p>
+<p>To answer this question, in this project I will run statistical tests to see whether willingness to pay for residential properties near SEPTA transit stations is statistically significantly higher than that for other residentials. Market value per square footage is used as an indicator to measure willingness to pay. Since a quarter mile is usually a threshold for scale of walking, the influence of proximity to transit stations on the market values of residentials could be very different when the distances are within or beyond this threshold. Therefore, instead of using distance as an explanatory variable, I will use a dummy variable, <span class="math inline">\(qrtmile\)</span> to account for proximity, where <span class="math inline">\(qrtmile=1\)</span> means the nearest transit station for a residential property is within a quarter mile and <span class="math inline">\(qrtmile=0\)</span> means that is more than a quarter mile away. The hypotheses are as follows:</p>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span>: Mean market values per square foot for residential properties within a quarter mile away from the nearest SEPTA station is equal to market values per square foot for properties located more than a quarter mile away from the nearest SEPTA station.</p></li>
+<li><p><span class="math inline">\(H_a\)</span>: Mean market values per square foot for residential properties within a quarter mile away from the nearest SEPTA station is greater than market values per square foot for properties located more than a quarter mile away from the nearest SEPTA station.</p></li>
+</ul>
+<p>Apart from testing this hypothesis and exploring how distance to the nearest transit station would influence market value per square footage, additional variables will also be introduced to explain the variation in willingness to pay. These variables could represent the quality of a residential property itself, or the quality of the neighborhood a property resides in, which are both expected to have strong association with willingness to pay for this property.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

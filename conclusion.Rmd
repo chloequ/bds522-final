@@ -1,0 +1,13 @@
+---
+title: ""
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 5 Conclusion
+
+Results of t-test and random permutation test consistently suggest that mean market value per square footage for properties within a quarter mile away from the nearest transit station is significantly higher than that for those more than a quarter mile away. In other words, proximity to transit stations for properties does have significant effect on willingness to pay for them. However, the results of multiple regression show that this factor could not be treated isolated. People do not purchase a residential property simply due to the fact that it is close to a transit station. Quality of the property itself, as well as the neighborhood environment have much more stronger effect on willingness to pay for a property. The effect of proximity to transit stations on willingness to pay for properties also depends on these external context and internal characteristics of these properties. As a conclusion, the successfulness of TOD could be very context-dependent.
+
+While the result conforms to the expectations, future steps could be taken to improve this analysis. First, a closer examination of the observations could help to further exclude extreme outliers. As housing prices could be influenced by so many unobserved variables, instead of using means in the statistical test, trimmed means may be more useful in the analysis and alleviate the violation of assumptions. Second, the analysis only uses one variable to account for the internal quality of the property, while there are many more influential variables. Additional information could be extracted from the Property Assessment data to better explain the variation in the response variable.

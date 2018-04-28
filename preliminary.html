@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BDS 522 Final Project</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Introduction</a>
+</li>
+<li>
+  <a href="data.html">Data and Methods</a>
+</li>
+<li>
+  <a href="preliminary.html">Preliminary Analysis</a>
+</li>
+<li>
+  <a href="results.html">Results</a>
+</li>
+<li>
+  <a href="conclusion.html">Conclusion</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="preliminary-analysis" class="section level1">
+<h1>3 Preliminary Analysis</h1>
+<p>Let us explore the relationships between the response variables and explanatory variables one by one.</p>
+<p>As mentioned before, interactions may exist between the variable <em>qrtmile</em> and other explanatory variables. A good way to explore these interactions is to see whether the effects of other explanatory variables on <em>value_sqft</em>look different when the variable <em>qrtmile</em> is different.</p>
+<pre class="r"><code># create a data frame for each group(qrtmile=0 and qrtmile=1) for later use
+dat0&lt;-dat[dat$qrtmile==0,]
+dat1&lt;-dat[dat$qrtmile==1,]</code></pre>
+<ul>
+<li><strong>Relationship 1: <em>qrtmile</em> vs <em>value_sqft</em></strong></li>
+</ul>
+<pre class="r"><code>boxplot(value_sqft~qrtmile,data=dat,ylab=&quot;market value / square footage&quot;,xlab=&quot;nearest station within a quarter mile or not&quot;,main=&quot;value_sqft by qrtmile&quot;)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>var(dat0$value_sqft)</code></pre>
+<pre><code>## [1] 6717.297</code></pre>
+<pre class="r"><code>var(dat1$value_sqft)</code></pre>
+<pre><code>## [1] 18444.55</code></pre>
+<p>The boxplot is not showing substantial difference between the average market values per square footage of the two groups (<span class="math inline">\(qrtmile=0\)</span> and <span class="math inline">\(qrtmile=1\)</span>). However, the spreads (variances) of <em>value_sqft</em> for these two groups are quite different.The distribution of <em>value_sqft</em> for properties located more than a quarter mile away from the nearest transit station (<span class="math inline">\(qrtmile=0\)</span>) has many extreme outliers.</p>
+<pre class="r"><code>par(mfrow = c(1,2), cex=0.7)
+hist(dat0$value_sqft,ylab=&quot;market value / square footage&quot;,xlab=&quot;market value / sqft (qrtmile = 0)&quot;,main=&quot;Histogram of value_sqft (qrtmile=0)&quot;)
+hist(dat1$value_sqft,ylab=&quot;market value / square footage&quot;,xlab=&quot;market value / sqft (qrtmile = 1)&quot;,main=&quot;Histogram of value_sqft (qrtmile=1)&quot;)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-3-1.png" width="100%" /></p>
+<p>?hist The histograms above also show that the distribution of <em>value_sqft</em> for the first group (<span class="math inline">\(qrtmile=0\)</span>) is more right skewed.</p>
+<ul>
+<li><strong>Relationship 2: <em>dist</em> vs <em>value_sqft</em></strong></li>
+</ul>
+<pre class="r"><code>par(col=&quot;grey&quot;)
+plot(dat$dist,dat$value_sqft,xlab=&quot;distance to the nearest station&quot;,ylab=&quot;market value / sqft&quot;, main=&quot;Value_sqft by Dist&quot;)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The relationship between <em>dist</em> and <em>value_sqft</em> seems to be non-linear. <em>value_sqft</em> seems to decrease at first as <em>dist</em> goes up, and then start to increase as <em>dist</em> increases. Starting from <span class="math inline">\(dist=20000(feet)\)</span>, there seems to be no effect of <em>dist</em> on <em>value_sqft</em>.</p>
+<pre class="r"><code>par(mfrow = c(1,2),cex=0.7,col=&quot;grey&quot;)
+plot(dat0$dist,dat0$value_sqft,xlab=&quot;distance to the nearest station&quot;,ylab=&quot;market value / sqft&quot;, main=&quot;Value_sqft by Dist(Group qrtmile=0)&quot;)
+plot(dat1$dist,dat1$value_sqft,xlab=&quot;distance to the nearest station&quot;,ylab=&quot;market value / sqft&quot;, main=&quot;Value_sqft by Dist(Group qrtmile=1)&quot;)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-5-1.png" width="100%" /> Comparing the plots for different groups, we can see that the patterns are quite different, if there is any. Within a quarter mile from transit stations, the market values per square footage for properties seem to be independent from <em>dist</em>. However, the relationship between <em>dist</em> and <em>value_sqft</em> for properties located more than a quarter mile from transit stations seems to conform the overall pattern stated previously (the two plots are quite similar). This is not surprising since the number of observations in this group account for 89% of the total.</p>
+<p>Given this non-linear trend of <em>value_sqft </em> over <em>dist</em>, <em>dist</em> is probably not a appropriate variable to be included in the multiple regression model.</p>
+<ul>
+<li><strong>Relationship 3: <em>condition</em> vs <em>value_sqft</em></strong></li>
+</ul>
+<pre class="r"><code>par(mfrow = c(1,2),cex=0.6)
+boxplot(value_sqft~condition,data=dat,names=c(&quot;average and below(0)&quot;,&quot;above average(1)&quot;),xlab=&quot;exterior condition&quot;,ylab=&quot;market value / sqft&quot;)
+interaction.plot(dat$qrtmile,dat$condition,dat$value_sqft,xlab=&quot;nearest station within a quarter mile or not&quot;,ylab=&quot;market value / sqft&quot;,trace.label = &quot;condition&quot;,main=&quot;Interaction effect of condition and qrtmile on value_sqft&quot;)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-6-1.png" width="100%" /> The mean <em>value_sqft</em> for properties with exterior condition that is above average appear to be substantially larger than that for properties with average or below average exterior condition.The interaction plot suggests that the effect of <em>qrtmile</em> on <em>value_sqft</em> does not change substantially as <em>condition</em> changes.</p>
+<ul>
+<li><strong>Relationship 4: <em>medInc</em> vs <em>value_sqft</em></strong></li>
+</ul>
+<pre class="r"><code>par(col=&quot;grey&quot;)
+plot(dat$medInc,dat$value_sqft,xlab=&quot;median household income&quot;,ylab=&quot;market value / sqft&quot;,main=&quot;Relationships between medInc and value_sqft by groups&quot;)
+abline(lm(dat$value_sqft~dat$medInc),col=&quot;green&quot;)
+abline(lm(dat0$value_sqft~dat0$medInc),col=&quot;red&quot;)
+abline(lm(dat1$value_sqft~dat1$medInc),col=&quot;blue&quot;)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>cor(dat$medInc,dat$value_sqft)</code></pre>
+<pre><code>## [1] 0.7209328</code></pre>
+<p>Both the plot and the value of correlation r suggest that there appears to be strong linear relationship between <em>medInc</em> and <em>value_sqft</em>. The green line in the plot represents the fitted line for all properties, the blue line represents the fitted line for properties within a quarter mile from transit stations, and the red line represents the fitted line for those that are not within a quarter mile. Just as expected, as median household income of the parent census tract increases, <em>value_sqft</em> increases as well. This effect of <em>medInc</em> on <em>value_sqft</em> seems to be stronger for properties within a quarter mile from transit stations.Interactions between <em>medInc</em> and <em>qrtmile</em> may exist.</p>
+<ul>
+<li><strong>Relationship 5: <em>vacRate</em> vs <em>value_sqft</em></strong></li>
+</ul>
+<pre class="r"><code>par(col=&quot;grey&quot;)
+plot(dat$vacRate,dat$value_sqft,xlab=&quot;vacancy rate&quot;,ylab=&quot;market value / sqft&quot;,main=&quot;Relationships between vacRate and value_sqft by groups&quot;)
+abline(lm(dat$value_sqft~dat$vacRate),col=&quot;green&quot;)
+abline(lm(dat0$value_sqft~dat0$vacRate),col=&quot;red&quot;)
+abline(lm(dat1$value_sqft~dat1$vacRate),col=&quot;blue&quot;)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>cor(dat$vacRate,dat$value_sqft)</code></pre>
+<pre><code>## [1] -0.2655685</code></pre>
+<p>There appears to be a negative relationship between <em>vacRate</em> and <em>value_sqft</em>, while the value of correlation r and the fitted line for all properties (green line) suggest that this linear relationship is not strong, it seems to be much stronger for properties located within a quarter mile from transit stations (blue line) than for properties located more than a quarter mile away (red line).</p>
+<pre class="r"><code>boxplot(vacRate~qrtmile,data = dat)</code></pre>
+<p><img src="preliminary_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Nonetheless, the boxplot above shows that the vacancy rates of parent census tracts seem to be much higher for properties within a quarter mile from transit stations compared to those that are not. This indicates that <em>qrtmile</em> represents the information about <em>vacRate</em> to certain extent, which we should be cautious about when developing the multiple regression model later on.</p>
+<p>Now that we have check the relationships between explanatory variables and the response variable, let us start to run the t-test and random permutation test and build the multiple regression model!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

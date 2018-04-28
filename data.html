@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BDS 522 Final Project</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Introduction</a>
+</li>
+<li>
+  <a href="data.html">Data and Methods</a>
+</li>
+<li>
+  <a href="preliminary.html">Preliminary Analysis</a>
+</li>
+<li>
+  <a href="results.html">Results</a>
+</li>
+<li>
+  <a href="conclusion.html">Conclusion</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="data-and-methods" class="section level1">
+<h1>2 Data and Methods</h1>
+<div id="data-source" class="section level3">
+<h3>2.1 Data Source</h3>
+<p>The major data set being used in this project is the <a href="https://www.opendataphilly.org/dataset/opa-property-assessments">Property Assessments dataset</a> for Philadelphia, updated by Office of Property Assessment (OPA), City of Philadelphia in 2015 on <a href="https://www.opendataphilly.org/">OpenDataPhilly</a>. This dataset contains physical characteristic, condition, and market value assessment information for every individual property in Philadelphia. Though commercial properties are included in this dataset, only the part of residential properties will be used for this project.</p>
+<p>The data were collected in Tax Year 2014 by OPA, under the Actual Value Initiate (AVI), which was aimed for ensuring the current market values of all properties to be assessed fairly. The OPA considers size, age, location of property, condition, recent sales of similar properties when assessing the market value. Information concerning these factors comes from field inspections conducted by OPA, aerial photography, data from other City departments (such as permits and deeds), and property listings.</p>
+<p>As mentioned in the introduction section, market value per square footage is the variable I will use as an indicator of willingness to pay. This is calculated based on the original Property Assessment dataset. Additional geospatial dataset of SEPTA city transit stations from <a href="https://www.opendataphilly.org/">OpenDataPhilly</a> will be joined to the <a href="https://www.opendataphilly.org/dataset/opa-property-assessments">Property Assessments dataset</a> through ArcMap, in order to obtain the information about distance to nearest SEPTA city transit stations for each residential property. Information about the age, and condition of properties in the <a href="https://www.opendataphilly.org/dataset/opa-property-assessments">Property Assessments dataset</a> will also be used. Furthermore, variables representing quality of parent neighborhood for properties will be constructed in ArcMap based on the ACS data at census tract level downloaded from <a href="https://www.socialexplorer.com/tables/ACS2015_5yr">Social Explorer</a>.</p>
+</div>
+<div id="data-description" class="section level3">
+<h3>2.2 Data Description</h3>
+<pre class="r"><code>library(dplyr)
+# load the prepared property assessment data set
+dat&lt;-read.csv(&quot;dat.csv&quot;)
+dim(dat)</code></pre>
+<pre><code>## [1] 30131     7</code></pre>
+<pre class="r"><code>head(dat)</code></pre>
+<pre><code>##   X value_sqft qrtmile     dist condition medInc   vacRate
+## 1 1   35.16854       0 1395.384         0  17855 0.1557266
+## 2 2   35.16854       0 1442.209         0  17855 0.1557266
+## 3 3   35.16854       0 1453.951         0  17855 0.1557266
+## 4 4   35.16854       0 1466.004         0  17855 0.1557266
+## 5 5   10.00000       0 1477.807         0  17855 0.1557266
+## 6 6   21.23596       0 1489.426         0  17855 0.1557266</code></pre>
+<p>There are 30131 observations (residential properties) in total in the prepared data set.The table above displays the first six rows of the resulting data frame, which contains the response and explanatory variables that are assumed to have associations with the response variable. These variables are:</p>
+<ul>
+<li><p><strong>qrtmile</strong>:this variable represents whether a property is located within a quarter mile away from the nearest transit station(=1) or not(=0).</p></li>
+<li><p><strong>dist</strong>:distance(feet) to the nearest transit station.</p></li>
+<li><p><strong>condition</strong>: the exterior condition of each property, 0 standards for not above average, and 1 stands for above average.</p></li>
+<li><p><strong>Median household income</strong>: It is assumed that people not only value the physical quality of a property itself, they also value the socio-economic environment of the neighborhood that a property is located in. Median household income serves as a proxy for neighborhood socio-economic condition. Properties located in census tracts with higher median household income are expected to have higher market values per square footage.</p></li>
+<li><p><strong>Vacancy Rate</strong>: Vacancy rate is another important indicator for neighborhood socio-economic conditions. Census tracts with high vacancy rate may suffer from blight or high crime rate, which could have great negative impact on people’s willingness to pay for the properties located within, even if the property has edge in proximity to transit stations.</p></li>
+</ul>
+</div>
+<div id="distributions-of-variables" class="section level3">
+<h3>2.3 Distributions of Variables</h3>
+<ul>
+<li><strong>Response variable: value_sqft</strong> (market value per sqaure footage)</li>
+</ul>
+<pre class="r"><code># value_sqft
+hist(dat$value_sqft,xlab=&quot;market value / sqft&quot;,main=&quot;Histogram of value_sqft&quot;)</code></pre>
+<p><img src="data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>We can see that the distribution of the response variable is clearly right skewed, since there are much more properties with low unit market values compared to the number of properties with high unit market values. For now, let us keep this variable as it is and not use transformations to make it Normal (such as log transformation) just so that it would be easier to interpret the results later on.</p>
+<pre class="r"><code>summary(dat$value_sqft)</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+##   0.3065  60.3937 102.1465 123.9107 154.8915 976.6089</code></pre>
+<pre class="r"><code>sd(dat$value_sqft)</code></pre>
+<pre><code>## [1] 89.47415</code></pre>
+<p>The summary of statistics table shows the most extreme market values per sqft are over 900 dollars, which are extreme outliers since they are too far away from the main cluster of distribution. This may cause problems when running statistical test, since even tests that are very robust (such as t-test) are not resistant to extreme outliers. Hence, the observations with value_sqft that are over 900 dollars are excluded from the data set.The skewness of the distribution is alleviated a little bit.</p>
+<pre class="r"><code># exclude extreme outliers for value_sqft
+dat&lt;-filter(dat,dat$value_sqft!=min(dat$value_sqft))
+dat&lt;-filter(dat,dat$value_sqft&lt;900)
+hist(dat$value_sqft,xlab=&quot;market value / sqft&quot;,main=&quot;Histogram of value_sqft&quot;)</code></pre>
+<p><img src="data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<ul>
+<li><strong>Explanatory variable: dist</strong> (distance to the nearest transit station)</li>
+</ul>
+<pre class="r"><code>hist(dat$dist,xlab=&quot;distance to the nearest station&quot;,main=&quot;Histogram of dist&quot;)</code></pre>
+<p><img src="data_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>summary(dat$dist)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   159.7  2862.8  5374.1  9425.5 11886.2 44819.5</code></pre>
+<pre class="r"><code>sd(dat$dist)</code></pre>
+<pre><code>## [1] 9914.945</code></pre>
+<p>The distribution of variable <em>dist</em> is also very right-skewed as well.This is not surprised, since this conforms with the density gradient of development spreading out from transit stations. The density around transit stations is usually very high, as it spreads out, properties are located much more sparsely.</p>
+<ul>
+<li><strong>Explanatory variable: qrtmile</strong> (whether there is a transit station located within a quarter mile)</li>
+</ul>
+<pre class="r"><code># qrtmile
+qrtmileTab&lt;-rbind(table(dat$qrtmile),c(1-mean(dat$qrtmile),mean(dat$qrtmile))*100)
+rownames(qrtmileTab)&lt;-c(&quot;frequency&quot;,&quot;percentage&quot;)
+qrtmileTab[1,]&lt;-as.integer(qrtmileTab[1,])
+qrtmileTab&lt;-t(qrtmileTab)
+qrtmileTab</code></pre>
+<pre><code>##   frequency percentage
+## 0     27463  91.290762
+## 1      2620   8.709238</code></pre>
+<pre class="r"><code>barplot(c(1-mean(dat$qrtmile),mean(dat$qrtmile))*100,names.arg = c(&quot;not within a quarter mile&quot;,&quot;within a quarter mile&quot;),ylim=c(0,100), xlab=&quot;distance to the nearest station&quot;,ylab=&quot;Percentage of properties&quot;)</code></pre>
+<p><img src="data_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The distribution is not even at all. A quarter mile buffer zones from those transit stations could only cover a very small part of area in Philadelphia. Less than 9 percent of properties are located within this buffer.</p>
+<ul>
+<li><strong>Explanatory variable: condition</strong> (whether the exterior condition for a property is above average or not)</li>
+</ul>
+<pre class="r"><code># condition
+condTab&lt;-rbind(table(dat$condition),c(1-mean(dat$condition),mean(dat$condition))*100)
+rownames(condTab)&lt;-c(&quot;frequency&quot;,&quot;percentage&quot;)
+condTab[1,]&lt;-as.integer(condTab[1,])
+condTab&lt;-t(condTab)
+condTab</code></pre>
+<pre><code>##   frequency percentage
+## 0     26906   89.43922
+## 1      3177   10.56078</code></pre>
+<pre class="r"><code>barplot(c(1-mean(dat$condition),mean(dat$condition))*100,names.arg = c(&quot;average and below&quot;,&quot;above average&quot;),ylim=c(0,100), xlab=&quot;exterior condition&quot;,ylab=&quot;Percentage of properties&quot;)</code></pre>
+<p><img src="data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Similar to <em>qrtmile</em>, the distribution of the variable <em>condition</em> is also not even with small number of 1s and large number of 0s.</p>
+<ul>
+<li><strong>Explanatory variable: medInc</strong> (median household income of parent census tract)</li>
+</ul>
+<pre class="r"><code># medInc
+hist(dat$medInc,xlab=&quot;median household income&quot;,main=&quot;Histogram of medInc&quot;)</code></pre>
+<p><img src="data_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>summary(dat$medInc)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0   29236   40664   44051   53742  145104</code></pre>
+<pre class="r"><code>sd(dat$medInc)</code></pre>
+<pre><code>## [1] 20396.87</code></pre>
+<ul>
+<li><strong>Explanatory variable: vacRate</strong> (percent of vacant residential units)</li>
+</ul>
+<pre class="r"><code># vacRate
+hist(dat$vacRate,xlab=&quot;vacancy rate&quot;,main=&quot;Histogram of vacRate&quot;)</code></pre>
+<p><img src="data_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>summary(dat$vacRate)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.07595 0.10327 0.12302 0.16222 0.36193</code></pre>
+<pre class="r"><code>sd(dat$vacRate)</code></pre>
+<pre><code>## [1] 0.06726152</code></pre>
+<p>Just as the response variable <em>value_sqft</em>, the two continuous independent variables <em>medInc</em> and <em>vacRate</em> are clearly right-skewed and suffer from extreme outliers as well, because there are very few census tracts with uncommonly high median household income and high vacancy rate. However, it is not appropriate to exclude those outliers. Unlike the response variable <em>value_sqft</em> which is calculated from individual properties, <em>medInc</em> and <em>vacRate</em> are aggregated variable for census tracts that are joined back to individual properties. This means that many properties would have the same value for <em>medInc</em> and <em>vacRate</em>. Excluding one value for either of these two variables could result in excluding many properties.</p>
+</div>
+<div id="methods-of-analysis" class="section level3">
+<h3>2.4 Methods of Analysis</h3>
+<p>As described in the introduction section. The purpose of this project contains two parts:</p>
+<ol style="list-style-type: decimal">
+<li><p>Test whether the variable <em>qrtmile</em> for each property has influence on people’s willingness to pay for it</p></li>
+<li><p>Explain the variation in people’s willingness to pay for residentials</p></li>
+</ol>
+<p>For the first part, I will run a two-sample t test and a random permutation test. A multiple regression analysis will also be run to explain the variation in willingness to pay for residentials (market values per square footage for residentials), using the explanatory variables that are selected above.</p>
+<p>The two groups: properties within a quarter mile from the nearest transit station and properties that are not, in the data set are treated as the two samples for which the means of market value per square footage are compared with each other. It should be noted that the two-sample t-test assumes that the two groups are SRSs coming from two different populations with response variables independent with each other. This assumption is likely to be violated in this study, since the market values of residential properties usually interact with one another spatially. The t procedure also assumes that the distribution of these two populations are Normal. However, due to the central limit theorem and law of large numbers, t test is very robust and resistant to the violation of Normality for population when the sample size is large, which could be applied to the situation of this project.Though the two populations are clearly skewed with the first one suffering from many outliers,the sample sizes are very large (27444 and 2616).In this case, the two-sample t test may still be robust.</p>
+<p>Considering the limitation of the two-sample t-test, a random permutation test for average market values per square footage within these two groups is also run. The andom permutation will choose 2616 observations at random in the data set and assign them to the “treatment group”. This generates a large amount of permutation resamples.For each resample, the difference of mean <em>value_sqft</em> between groups would be calculated.If the observed difference is significantly larger than the center of the permutation distribution, then we can reject the null hypothesis. Once the random permutation test yields consistent result with the two-sample t test, then we may say that this result is convincing.</p>
+<p>The multiple regression model will be developed based on the selected explanatory variables. Since a quarter mile is a general threshold for walking (to transit stations), properties located within this threshold of distance from the nearest transit station could provide substantially more benefit for people. This suggests that the effects of other variables on willingness to pay might be different for properties within this threshold and for those that are not. Therefore, interaction terms between <em>qrtmile</em> and other variables should be added to the multiple regression analysis to test this hypothesis. However, before going into the multiple regression analysis, we need to do some preliminary analysis to roughly check whether the relationships appear to be the same direction as expected.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
