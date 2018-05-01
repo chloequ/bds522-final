@@ -249,7 +249,7 @@ permTS(dat1$value_sqft,dat0$value_sqft,alternative=&quot;greater&quot;,method=&q
 </div>
 <div id="multiple-regression" class="section level3">
 <h3>4.3 Multiple Regression</h3>
-<p>As the main object for this project is to examine whether proximity to transit stations for a property increases peopleâ€™s willingness to pay for it, first let us develop a simple regression model for <em>qrtmile</em>.</p>
+<p>As the main object for this project is to examine whether proximity to transit stations for a property increases people’s willingness to pay for it, first let us develop a simple regression model for <em>qrtmile</em>.</p>
 <pre class="r"><code>reg00&lt;-lm(log(value_sqft)~ factor(qrtmile),data=dat)
 summary(reg00)</code></pre>
 <pre><code>## 
@@ -271,33 +271,9 @@ summary(reg00)</code></pre>
 ## Multiple R-squared:  0.003846,   Adjusted R-squared:  0.003813 
 ## F-statistic: 116.1 on 1 and 30081 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Though the coefficient of <em>qrtmile</em> is significant, the r-squared is very low (0.004). This is not surprising since the <em>qrtmile</em> is a categorical variable, which fits poorly in simple linear regression. Furthermore, as described in the introduction section, the variation in <em>value_sqft</em> is expected to be associated with many other variables. Notice, however, the sign of the coefficient is positive, which suggest that, being within a quarter mile away from transit stations have positive effect on <em>value_sqft </em>, which conforms to previous conclusion.</p>
-<pre class="r"><code># result contradicts the observations
-reg0&lt;-lm(value_sqft~ dist * factor(qrtmile),data=dat)
-summary(reg0)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = value_sqft ~ dist * factor(qrtmile), data = dat)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -163.83  -55.77  -18.78   26.32  576.17 
-## 
-## Coefficients:
-##                         Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)            1.102e+02  7.561e-01  145.77   &lt;2e-16 ***
-## dist                   8.969e-04  5.282e-05   16.98   &lt;2e-16 ***
-## factor(qrtmile)1       6.236e+01  6.140e+00   10.16   &lt;2e-16 ***
-## dist:factor(qrtmile)1 -3.297e-03  6.593e-03   -0.50    0.617    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 87.55 on 30079 degrees of freedom
-## Multiple R-squared:  0.03533,    Adjusted R-squared:  0.03524 
-## F-statistic: 367.2 on 3 and 30079 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Now it is time to add all other variables to the regression model. Since several other variables demonstrate interactions with <em>qrtmile</em> more or less in the preliminary analysis section, these interactions should be included in the regression model. This model could be stated as:</p>
 <p><strong><em>value_sqft</em><span class="math inline">\(=\beta_0+\beta_1*dist*qrtmile+\beta_2*medInc*qrtmile+\beta_3*vacRate*qrtmile+\beta_4*condition\)</span></strong> <strong><span class="math inline">\(+\beta_5*dist+\beta_6*medInc+\beta_7*vacRate+\beta_8*condition\)</span></strong></p>
-<pre class="r"><code># result contradicts the observations
-reg1&lt;-lm(value_sqft~dist * factor(qrtmile) +  medInc * factor(qrtmile) + vacRate * factor(qrtmile) +  factor(condition),data=dat)
+<pre class="r"><code>reg1&lt;-lm(value_sqft~dist * factor(qrtmile) +  medInc * factor(qrtmile) + vacRate * factor(qrtmile) +  factor(condition),data=dat)
 summary(reg1)</code></pre>
 <pre><code>## 
 ## Call:
@@ -327,26 +303,30 @@ summary(reg1)</code></pre>
 ## F-statistic:  6764 on 8 and 30074 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Except for the coefficient of <em>dist:factor(qrtmile1)</em>, all other coefficients are significant. Recall that in the Preliminary Analysis section, the plot of <em>value_sqft</em> by <em>dist</em> for <em>qrtmile=1</em> suggests that there is no significant linear relationship between <em>dist</em> and <em>value_sqft</em> for this group. The non-significant coefficient agrees with this observation. The R-squared is 0.64, which means that 64% of the variation in <em>value_sqft</em> is explained by this model.</p>
 <p>These (significant) coefficients could be interpreted as follows:</p>
-<p>+<strong><em>Intercept</em></strong>: the interpretation is not meaningful here.</p>
-<p>+<strong><em>dist</em></strong>: holding median household income and vacancy rate of the parent census tract as well as condition constant, an additional increase of distance from the nearest transit station is associated with a <strong>decrease</strong> of 8.142e-04 dollars in its market value per square footage, if the property is more than a quarter mile away from the nearest station.</p>
-<p>+<strong><em>factor(qrtmile)1</em></strong>: If the median household income and vacancy rate of the parent census tract are zero, and the exterior condition of a property is not above average, the market value per square footage for this property would be 2.179e+01 dollars higher when it is located within a quarter mile from the nearest transit station than when it is not. (Again, this is not very meaningful)</p>
-<p>+<strong><em>medInc</em></strong>: as median household income increases by 1 dollar, the main effect of it is that market value per square footage <strong>increases</strong> 2.696e-03 dollars, if holding all other terms constant. However, <em>medInc</em> also appears in interaction terms, so the effect of <em>medInc</em> can only be partially interpreted here.</p>
-<p>+<strong><em>vacRate</em></strong>: as vacancy rate increases by 1 percentage, the main effect of it is that market value per square footage <strong>decreases</strong> 6.611e+01 dollars, if holding all other terms constant. However, * vacRate * also appears in interaction terms, so the effect of * vacRate* can only be partially interpreted here.</p>
-<p>+<strong><em>factor(condition)1</em></strong>: on average, the market value per square footage for properties with above-average exterior condition is 8.761e+01 dollars higher than that for those that are not above average, if holding <em>medInc</em>,<em>dist</em>,<em>vacRate</em> constant.</p>
-<p>+<strong><em>factor(qrtmile)1: medInc</em></strong>: the <strong>positive</strong> effect of being within a quarter mile away from the nearest transit station on market value per square footage is 6.267e-04 dollars higher as median household income increases by 1 dollar, holding <em>vacRate</em>,<em>dist</em>, and <em>condition</em> constant.</p>
-<p>+<strong><em>factor(qrtmile)1: vacRate</em></strong>: the <strong>negative</strong> effect of being within a quarter mile away from the nearest transit station on market value per square footage is 1.449e+02 dollars higher as vacancy rate increases by 1 percentage, holding <em>medInc</em>,<em>dist</em>, and <em>condition</em> constant.</p>
+<ul>
+<li><p><strong><em>Intercept</em></strong>: the interpretation is not meaningful here.</p></li>
+<li><p><strong><em>dist</em></strong>: holding median household income and vacancy rate of the parent census tract as well as condition constant, an additional increase of distance from the nearest transit station is associated with a <strong>decrease</strong> of 8.142e-04 dollars in its market value per square footage, if the property is more than a quarter mile away from the nearest station.</p></li>
+<li><p><strong><em>factor(qrtmile)1</em></strong>: If the median household income and vacancy rate of the parent census tract are zero, and the exterior condition of a property is not above average, the market value per square footage for this property would be 2.179e+01 dollars higher when it is located within a quarter mile from the nearest transit station than when it is not. (Again, this is not very meaningful since there is no such census tract with median household income and vacancy rate being zero)</p></li>
+<li><p><strong><em>medInc</em></strong>: as median household income increases by 1 dollar, the main effect of it is that market value per square footage <strong>increases</strong> 2.696e-03 dollars, if holding all other terms constant. However, <em>medInc</em> also appears in interaction terms, so the effect of <em>medInc</em> can only be partially interpreted here.</p></li>
+<li><p><strong><em>vacRate</em></strong>: as vacancy rate increases by 1 percentage, the main effect of it is that market value per square footage <strong>decreases</strong> 6.611e+01 dollars, if holding all other terms constant. However, <em>vacRate</em> also appears in interaction terms, so the effect of <em>vacRate</em> can only be partially interpreted here.</p></li>
+<li><p><strong><em>factor(condition)1</em></strong>: on average, the market value per square footage for properties with above-average exterior condition is 8.761e+01 dollars higher than that for those that are not above average, if holding <em>medInc</em>,<em>dist</em>,<em>vacRate</em> constant.</p></li>
+<li><p><strong><em>factor(qrtmile)1: medInc</em></strong>: the <strong>positive</strong> marginal effect of being within a quarter mile away from the nearest transit station on market value per square footage is 6.267e-04 dollars higher as median household income increases by 1 dollar, holding <em>vacRate</em>,<em>dist</em>, and <em>condition</em> constant.</p></li>
+<li><p><strong><em>factor(qrtmile)1: vacRate</em></strong>: the <strong>negative</strong> marginal effect of being within a quarter mile away from the nearest transit station on market value per square footage is 1.449e+02 dollars higher as vacancy rate increases by 1 percentage, holding <em>medInc</em>,<em>dist</em>, and <em>condition</em> constant.</p></li>
+</ul>
 <p>Finally, it is necessary to check whether the assumptions of multiple regression still hold for this model.</p>
 <pre class="r"><code>par(mfrow = c(1,2),cex=0.7)
 hist(reg1$residuals)
+library(car)
 qqPlot(reg1)</code></pre>
-<p><img src="results_files/figure-html/unnamed-chunk-6-1.png" width="100%" /></p>
+<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" width="100%" /></p>
 <pre class="r"><code>summary(reg1$residuals)</code></pre>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ## -344.368  -24.762   -7.336    0.000   16.688  490.997</code></pre>
 <p>The histogram of residuals and the Normal quantile plot show that distribution is skewed. However, given that the sample size is very large, this skewness is not strong enough to invalidate the analysis.</p>
 <pre class="r"><code>par(col=&quot;grey&quot;)
 plot(reg1$fitted.values,reg1$residuals,xlab=&quot;predicted values&quot;,ylab=&quot;residuals&quot;,main=&quot;Residuals by Predicted Plot&quot;)</code></pre>
-<p><img src="results_files/figure-html/unnamed-chunk-7-1.png" width="672" /> The residuals by predicted plot also suggests that the residuals are heteroscedastic (variances are not constant at different predicted values) This is not surprising given that there are many observations with extreme high market values per square footage, which cannot be fully explained by this model. Again, this heteroscedasticity is not strong enough to invalidate the analysis.</p>
+<p><img src="results_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>The residuals by predicted plot also suggests that the residuals are heteroscedastic (variances are not constant at different predicted values) This is not surprising given that there are many observations with extreme high market values per square footage, which cannot be fully explained by this model. Again, this heteroscedasticity is not strong enough to invalidate the analysis.</p>
 </div>
 </div>
 

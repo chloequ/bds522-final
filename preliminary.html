@@ -211,7 +211,7 @@ $(document).ready(function () {
 <div id="preliminary-analysis" class="section level1">
 <h1>3 Preliminary Analysis</h1>
 <p>Let us explore the relationships between the response variables and explanatory variables one by one.</p>
-<p>As mentioned before, interactions may exist between the variable <em>qrtmile</em> and other explanatory variables. A good way to explore these interactions is to see whether the effects of other explanatory variables on <em>value_sqft</em>look different when the variable <em>qrtmile</em> is different.</p>
+<p>As mentioned before, interactions may exist between the variable <em>qrtmile</em> and other explanatory variables. A good way to explore these interactions is to see whether the effects of other explanatory variables on <em>value_sqft</em> look different when the variable <em>qrtmile</em> is different.</p>
 <pre class="r"><code># create a data frame for each group(qrtmile=0 and qrtmile=1) for later use
 dat0&lt;-dat[dat$qrtmile==0,]
 dat1&lt;-dat[dat$qrtmile==1,]</code></pre>
@@ -229,7 +229,7 @@ dat1&lt;-dat[dat$qrtmile==1,]</code></pre>
 hist(dat0$value_sqft,ylab=&quot;market value / square footage&quot;,xlab=&quot;market value / sqft (qrtmile = 0)&quot;,main=&quot;Histogram of value_sqft (qrtmile=0)&quot;)
 hist(dat1$value_sqft,ylab=&quot;market value / square footage&quot;,xlab=&quot;market value / sqft (qrtmile = 1)&quot;,main=&quot;Histogram of value_sqft (qrtmile=1)&quot;)</code></pre>
 <p><img src="preliminary_files/figure-html/unnamed-chunk-3-1.png" width="100%" /></p>
-<p>?hist The histograms above also show that the distribution of <em>value_sqft</em> for the first group (<span class="math inline">\(qrtmile=0\)</span>) is more right skewed.</p>
+<p>The histograms above also show that the distribution of <em>value_sqft</em> for the first group (<span class="math inline">\(qrtmile=0\)</span>) is more right skewed.</p>
 <ul>
 <li><strong>Relationship 2: <em>dist</em> vs <em>value_sqft</em></strong></li>
 </ul>

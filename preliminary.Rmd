@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #3 Preliminary Analysis
 Let us explore the relationships between the response variables and explanatory variables one by one.
 
-As mentioned before, interactions may exist between the variable *qrtmile* and other explanatory variables. A good way to explore these interactions is to see whether the effects of other explanatory variables on *value_sqft*look different when the variable *qrtmile* is different.
+As mentioned before, interactions may exist between the variable *qrtmile* and other explanatory variables. A good way to explore these interactions is to see whether the effects of other explanatory variables on *value_sqft* look different when the variable *qrtmile* is different.
 
 ```{r message=FALSE}
 # create a data frame for each group(qrtmile=0 and qrtmile=1) for later use
@@ -32,7 +32,6 @@ hist(dat0$value_sqft,ylab="market value / square footage",xlab="market value / s
 hist(dat1$value_sqft,ylab="market value / square footage",xlab="market value / sqft (qrtmile = 1)",main="Histogram of value_sqft (qrtmile=1)")
 ```
 
-?hist
 The histograms above also show that the distribution of *value_sqft* for the first group ($qrtmile=0$) is more right skewed.
 
 * **Relationship 2: *dist* vs *value_sqft***
